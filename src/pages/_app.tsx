@@ -2,6 +2,7 @@ import { MantineProvider } from '@mantine/core'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import 'src/lib/tailwind.css'
+import { Header } from 'src/component/layout/Header'
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props
@@ -24,6 +25,7 @@ export default function App(props: AppProps) {
           colorScheme: 'light',
         }}
       >
+        <Header />
         <Component {...pageProps} />
       </MantineProvider>
     </>
