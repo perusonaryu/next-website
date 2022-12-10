@@ -1,7 +1,7 @@
 import { Carousel } from '@mantine/carousel'
 import { createStyles } from '@mantine/core'
 import Autoplay from 'embla-carousel-autoplay'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { FC, useRef } from 'react'
 
 const images = ['/top_image9.jpg', '/top_image10.jpg', '/top_image_yama.png']
@@ -33,12 +33,12 @@ export const Slider: FC<Props> = ({ delayVal }) => {
   const autoplay = useRef(Autoplay({ delay: delayVal }))
   const slides = images.map((url) => (
     <Carousel.Slide key={url} className="flex justify-center items-center">
-      <div className="p-2 mx-3 bg-white">
+      <div className="relative flex justify-center items-center p-[10px] mx-3 bg-white h-[120px] w-[120px]">
         <Image
           src={url}
           alt={'slide'}
-          width={120}
-          height={120}
+          height={100}
+          width={100}
           objectFit="cover"
         />
       </div>

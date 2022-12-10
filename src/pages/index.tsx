@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { Slider } from '@/component/top/Slider'
 
 const Home: NextPage = () => {
@@ -16,7 +16,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>title</title>
+        <title>塗装くらべる おきなわ</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="pt-[70px]">
@@ -199,7 +199,7 @@ const Home: NextPage = () => {
               objectFit="cover"
               className="absolute"
             />
-            <Slider delayVal={2000} />
+            <Slider delayVal={3000} />
           </div>
           <div className="relative h-[600px]">
             <div
@@ -218,7 +218,7 @@ const Home: NextPage = () => {
               objectFit="cover"
               className="absolute"
             />
-            <Slider delayVal={2500} />
+            <Slider delayVal={4000} />
           </div>
         </div>
       </main>
