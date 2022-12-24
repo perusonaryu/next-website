@@ -9,14 +9,14 @@ export const Header: FC = () => {
           <Link href="/">HAKU</Link>
         </h1>
         <ul className="flex m-auto">
-          <li className="text-sm p-[22px]">
+          {/* <li className="text-sm p-[22px]">
             <Link href="/blog">ブログ</Link>
-          </li>
-          <li className="text-sm p-[22px]">
-            <Link href="/news">お知らせ</Link>
-          </li>
+          </li> */}
           <li className="text-sm p-[22px]">
             <Link href="/company">会社概要</Link>
+          </li>
+          <li className="text-sm p-[22px]">
+            <Link href="/contact">お問い合わせ</Link>
           </li>
         </ul>
         <div className="flex font-bold">
