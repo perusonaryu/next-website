@@ -8,21 +8,24 @@ const Contact: NextPage = () => {
     lastName: string
     email: string
     uploadFile: File | null
-    contentOfInquiry: string
+    inquiry: string
   }
 
   const onSubmit = async (data: FormValues) => {
     try {
+      const reqData = new FormData()
+      reqData.append('firstName', data.firstName)
+      reqData.append('lastName', data.lastName)
+      reqData.append('email', data.email)
+      reqData.append('inquiry', data.inquiry)
+      reqData.append('uploadFile', data.uploadFile || '')
+
       const res = fetch('/api/sendMail', {
         method: 'POST',
-        headers: {
-          Accept: 'application/json, text/plain, */*',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        body: reqData,
       })
       console.log('res: ', res)
-      form.reset()
+      // form.reset()
       alert('お問い合わせが送信されました。')
     } catch (error) {
       console.error('Fetch error : ', error)
@@ -35,7 +38,7 @@ const Contact: NextPage = () => {
       lastName: '',
       email: '',
       uploadFile: null,
-      contentOfInquiry: '',
+      inquiry: '',
     },
     validate: {
       firstName: (value) =>
@@ -46,7 +49,7 @@ const Contact: NextPage = () => {
         /^\S+@\S+$/.test(value) ? null : 'メールアドレスを入力してください。',
       uploadFile: (value) =>
         value == null ? 'ファイルを添付してください。' : null,
-      contentOfInquiry: (value) =>
+      inquiry: (value) =>
         value.length <= 0 ? 'お問合せ内容を入力してください。' : null,
     },
   })
@@ -83,13 +86,14 @@ const Contact: NextPage = () => {
           placeholder="見積もりのファイルを添付してください。"
           label="見積もり"
           withAsterisk
+          accept="image/*,.pdf"
           {...form.getInputProps('uploadFile')}
         />
         <Textarea
           placeholder="お問い合わせの内容を入力してください。"
           label="お問合せ内容"
           withAsterisk
-          {...form.getInputProps('contentOfInquiry')}
+          {...form.getInputProps('inquiry')}
         />
         <Button type="submit">Submit</Button>
       </form>
