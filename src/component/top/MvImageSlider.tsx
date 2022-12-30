@@ -4,7 +4,13 @@ import Autoplay from 'embla-carousel-autoplay'
 import Image from 'next/legacy/image'
 import { FC, useRef } from 'react'
 
-const images = ['/top_image9.jpg', '/top_image10.jpg', '/top_image_yama.png']
+const images = [
+  '/top_image1.jpg',
+  '/top_image2.jpg',
+  '/top_image3.jpg',
+  '/top_image4.jpg',
+  '/top_image5.jpg',
+]
 
 const useStyles = createStyles((_theme, _params, getRef) => ({
   root: {

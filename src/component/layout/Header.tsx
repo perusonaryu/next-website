@@ -19,10 +19,6 @@ export const Header: FC = () => {
             <Link href="/contact">お問い合わせ</Link>
           </li>
         </ul>
-        <div className="flex font-bold">
-          <p className="mr-2.5">JP</p>
-          <p className="mr-2.5">EN</p>
-        </div>
       </header>
     </>
   )

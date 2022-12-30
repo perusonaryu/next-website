@@ -12,8 +12,9 @@ export const sendMaiToSetting = (
   //0:admin,1:user
   const subjectText = [
     '塗装HPからお問い合わせを受け付けました。',
-    `${fields.firstName + ' ' + fields.lastName}
-    様お問い合わせありがとうございます。`,
+    `${
+      fields.firstName + ' ' + fields.lastName
+    }様お問い合わせありがとうございます。`,
   ]
   const sendMail = {
     from: process.env.MAIL_USER,
