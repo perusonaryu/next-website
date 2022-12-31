@@ -13,11 +13,12 @@ const images = [
 ]
 
 const useStyles = createStyles((_theme, _params, getRef) => ({
-  root: {
-    ref: getRef('root'),
-    margin: '50px',
-    marginRight: '50px!important',
-    marginLeft: '50px!important',
+  container: {
+    ref: getRef('container'),
+    height: '700px',
+    '@media (max-width: 576px)': {
+      height: '300px',
+    },
   },
 }))
 
@@ -32,7 +33,6 @@ export const MvImageSlider: FC<Props> = ({ delayVal }) => {
     <Carousel.Slide key={url} className="flex justify-center items-center">
       <div className="flex items-center justify-center">
         <Image src={url} alt={'slide'} layout="fill" />
-        <p className="text-white">aaaaaaaaa</p>
       </div>
     </Carousel.Slide>
   ))
@@ -42,7 +42,6 @@ export const MvImageSlider: FC<Props> = ({ delayVal }) => {
         <Carousel
           classNames={classes}
           mx="auto"
-          height={685}
           slideGap="md"
           plugins={[autoplay.current]}
           loop
@@ -51,6 +50,12 @@ export const MvImageSlider: FC<Props> = ({ delayVal }) => {
         >
           {slides}
         </Carousel>
+        <p
+          className="absolute z-10 top-[50%] left-[50%]"
+          style={{ transform: 'translate(-50%, -50%)' }}
+        >
+          aaaaaaaaaaaaaaaaa
+        </p>
       </div>
     </>
   )

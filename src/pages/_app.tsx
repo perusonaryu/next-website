@@ -1,7 +1,7 @@
 import { MantineProvider } from '@mantine/core'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
-import 'src/lib/tailwind.css'
+import 'styles/globals.css'
 import { Footer } from 'src/component/layout/Footer'
 import { Header } from 'src/component/layout/Header'
 
