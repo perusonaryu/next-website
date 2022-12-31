@@ -34,30 +34,46 @@ const Company: NextPage = () => {
           会社概要
         </h3>
         <dt className="w-full">
-          <tr className="w-full flex border-solid border-[1px]">
-            <td className="w-[20%] h-[60px] flex items-center justify-center border-r-[1px] bg-gray-100">
+          <div className="w-full flex border-solid border-[1px]">
+            <div className="w-[20%] h-[60px] flex items-center justify-center border-r-[1px] bg-gray-100">
               法人名
-            </td>
-            <td className="w-[80%] h-[60px] flex items-center px-[30px] py-[10px]">
+            </div>
+            <div className="w-[80%] h-[60px] flex items-center px-[30px] py-[10px]">
               アクティブクリエイション株式会社 （ Active Creation Co., Ltd.）
-            </td>
-          </tr>
-          <tr className="w-full flex border-solid border-[1px] border-t-0">
-            <td className="w-[20%] h-[60px] flex items-center justify-center border-r-[1px] bg-gray-100">
+            </div>
+          </div>
+          <div className="w-full flex border-solid border-[1px]">
+            <div className="w-[20%] h-[60px] flex items-center justify-center border-r-[1px] bg-gray-100">
               設立年月日
-            </td>
-            <td className="w-[80%] h-[60px] flex items-center px-[30px] py-[10px]">
+            </div>
+            <div className="w-[80%] h-[60px] flex items-center px-[30px] py-[10px]">
               2011年6月2日
-            </td>
-          </tr>
-          <tr className="w-full flex border-solid border-[1px] border-t-0">
-            <td className="w-[20%] h-[60px] flex items-center justify-center border-r-[1px] bg-gray-100">
+            </div>
+          </div>
+          <div className="w-full flex border-solid border-[1px]">
+            <div className="w-[20%] h-[60px] flex items-center justify-center border-r-[1px] bg-gray-100">
+              資本金
+            </div>
+            <div className="w-[80%] h-[60px] flex items-center px-[30px] py-[10px]">
+              3,000,000円
+            </div>
+          </div>
+          <div className="w-full flex border-solid border-[1px]">
+            <div className="w-[20%] h-[60px] flex items-center justify-center border-r-[1px] bg-gray-100">
+              法人名
+            </div>
+            <div className="w-[80%] h-[60px] flex items-center px-[30px] py-[10px]">
+              アクティブクリエイション株式会社 （ Active Creation Co., Ltd.）
+            </div>
+          </div>
+          <div className="w-full flex border-solid border-[1px]">
+            <div className="w-[20%] h-[60px] flex items-center justify-center border-r-[1px] bg-gray-100">
               代表者
-            </td>
-            <td className="w-[80%] h-[60px] flex items-center px-[30px] py-[10px]">
+            </div>
+            <div className="w-[80%] h-[60px] flex items-center px-[30px] py-[10px]">
               古謝毅
-            </td>
-          </tr>
+            </div>
+          </div>
         </dt>
       </div>
     </div>
