@@ -12,7 +12,7 @@ const Company: NextPage = () => {
               'linear-gradient(to bottom, rgba(55,17,0,1) 0%,rgba(55,17,0,0) 100%)',
           }}
         >
-          <p className="px-6 text-center">HAKUについて</p>
+          <p className="px-6 text-center">KURABERUについて</p>
         </div>
         <Image
           src="/top_image1.jpg"
@@ -25,7 +25,7 @@ const Company: NextPage = () => {
           className="absolute top-[50%] left-[50%] max-w-[600px] text-white leading-[2.7] w-100 xs:px-[40px] xs:py-[70px]"
           style={{ transform: 'translate(-50%, -50%)' }}
         >
-          Lorem Ipsum is simply dummy text of the printing and typesetting
+          住まいのプロとお客さまの架け橋に。
         </p>
       </div>
       <div className="my-[100px] mx-auto max-w-[860px]">
