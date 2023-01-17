@@ -10,7 +10,7 @@ const Home: NextPage = () => {
         <title>塗装くらべる おきなわ</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="pt-[70px]">
+      <main>
         <div className="xs:m-[50px] mb-[60px]">
           <MvImageSlider delayVal={4000} />
         </div>

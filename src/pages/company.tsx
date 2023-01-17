@@ -3,7 +3,7 @@ import Image from 'next/legacy/image'
 
 const Company: NextPage = () => {
   return (
-    <div className="pt-[70px]">
+    <div>
       <div className="relative h-[300px] xs:h-[600px] w-full">
         <div
           className="absolute z-10 top-0 left-0 xs:left-[10%] h-[110px] w-[110px] xs:h-[180px] xs:w-[180px] flex items-center justify-center text-white"
