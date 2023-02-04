@@ -1,13 +1,15 @@
-import { TextInput, Textarea, Button, FileInput } from '@mantine/core'
+import { TextInput, Textarea, Button, FileInput, Loader } from '@mantine/core'
 import { DatePicker } from '@mantine/dates'
 import { useForm } from '@mantine/form'
 import type { NextPage } from 'next'
+import { useState } from 'react'
 import 'dayjs/locale/ja'
 
 const Contact: NextPage = () => {
+  //0:入力画面,1:確認画面,2:完了画面
+  const [formType, setFormType] = useState<number>(0)
   type FormValues = {
-    firstName: string
-    lastName: string
+    fullname: string
     email: string
     phoneNumber: string
     postalCode: string
@@ -21,9 +23,10 @@ const Contact: NextPage = () => {
 
   const onSubmit = async (data: FormValues) => {
     try {
+      //ローディング画面へ
+      setFormType(1)
       const reqData = new FormData()
-      reqData.append('firstName', data.firstName)
-      reqData.append('lastName', data.lastName)
+      reqData.append('fullname', data.fullname)
       reqData.append('email', data.email)
       reqData.append('phoneNumber', data.phoneNumber)
       reqData.append('postalCode', data.postalCode)
@@ -34,22 +37,22 @@ const Contact: NextPage = () => {
       reqData.append('thirdDate', String(data.thirdDate))
       reqData.append('inquiry', data.inquiry)
 
-      const res = fetch('/api/sendMail', {
+      const res = await fetch('/api/sendMail', {
         method: 'POST',
         body: reqData,
       })
-      console.log('res: ', res)
+      console.log('res: ', res.json())
       // form.reset()
-      alert('お問い合わせが送信されました。')
+      //完了画面へ
+      setFormType(2)
     } catch (error) {
       console.error('Fetch error : ', error)
-      alert(JSON.stringify(error))
     }
   }
   const form = useForm<FormValues>({
+    validateInputOnChange: true,
     initialValues: {
-      firstName: '',
-      lastName: '',
+      fullname: '',
       email: '',
       phoneNumber: '',
       postalCode: '',
@@ -61,10 +64,8 @@ const Contact: NextPage = () => {
       inquiry: '',
     },
     validate: {
-      firstName: (value) =>
+      fullname: (value) =>
         value.length <= 0 ? '姓を入力してください。' : null,
-      lastName: (value) =>
-        value.length <= 0 ? '名を入力してください。' : null,
       email: (value) =>
         /^\S+@\S+$/.test(value) ? null : 'メールアドレスを入力してください。',
       inquiry: (value) =>
@@ -73,90 +74,106 @@ const Contact: NextPage = () => {
   })
 
   return (
-    <div className="pt-[70px]">
-      <form
-        className="max-w-[650px] mx-auto"
-        onSubmit={form.onSubmit((values) => onSubmit(values))}
-      >
-        <div className="w-full flex justify-between ">
+    <div className="my-[40px]">
+      {formType == 0 && (
+        <form
+          className="max-w-[650px] mx-auto"
+          onSubmit={form.onSubmit((values) => onSubmit(values))}
+        >
           <TextInput
-            label="姓"
-            placeholder="田中"
-            className="w-5/12"
-            {...form.getInputProps('firstName')}
+            className="mb-4"
+            label="お名前"
+            placeholder="沖縄太朗"
+            {...form.getInputProps('fullname')}
             withAsterisk
           />
           <TextInput
-            label="名"
-            placeholder="太朗"
-            className="w-5/12"
-            {...form.getInputProps('lastName')}
+            className="mb-4"
+            label="メールアドレス"
+            placeholder="xxx@xxx.com"
+            {...form.getInputProps('email')}
             withAsterisk
           />
-        </div>
-        <TextInput
-          label="メールアドレス"
-          placeholder="xxx@xxx.com"
-          {...form.getInputProps('email')}
-          withAsterisk
-        />
-        <TextInput
-          label="携帯番号"
-          placeholder="xxx-xxxx-xxxx"
-          {...form.getInputProps('phoneNumber')}
-        />
-        <TextInput
-          label="郵便番号"
-          placeholder="xxx-xxxx"
-          {...form.getInputProps('postalCode')}
-        />
-        <TextInput
-          label="住所"
-          placeholder="xxx県xxxxx町xxx"
-          {...form.getInputProps('address')}
-        />
+          <TextInput
+            className="mb-4"
+            label="携帯番号"
+            placeholder="xxx-xxxx-xxxx"
+            {...form.getInputProps('phoneNumber')}
+          />
+          <TextInput
+            className="mb-4"
+            label="郵便番号"
+            placeholder="xxx-xxxx"
+            {...form.getInputProps('postalCode')}
+          />
+          <TextInput
+            className="mb-4"
+            label="住所"
+            placeholder="xxx県xxxxx町xxx"
+            {...form.getInputProps('address')}
+          />
 
-        <FileInput
-          placeholder="見積もりのファイルを添付してください。"
-          label="見積もり"
-          accept="image/*,.pdf"
-          {...form.getInputProps('uploadFile')}
-        />
-        <div className="my-6">
-          <p>見積もり現場確認希望日</p>
-          <DatePicker
-            locale="ja"
-            placeholder=""
-            inputFormat="YYYY/MM/DD"
-            label="第一希望"
-            defaultValue={new Date()}
-            {...form.getInputProps('firstDate')}
+          <FileInput
+            className="mb-4"
+            placeholder="見積もりのファイルを添付してください。"
+            label="見積もり"
+            accept="image/*,.pdf"
+            {...form.getInputProps('uploadFile')}
           />
-          <DatePicker
-            locale="ja"
-            placeholder=""
-            inputFormat="YYYY/MM/DD"
-            label="第二希望"
-            defaultValue={new Date()}
-            {...form.getInputProps('secondDate')}
+          <div className="mb-4">
+            <h4>見積もり現場確認希望日</h4>
+            <DatePicker
+              locale="ja"
+              placeholder=""
+              inputFormat="YYYY/MM/DD"
+              firstDayOfWeek="sunday"
+              label="第一希望"
+              defaultValue={new Date()}
+              {...form.getInputProps('firstDate')}
+            />
+            <DatePicker
+              locale="ja"
+              placeholder=""
+              inputFormat="YYYY/MM/DD"
+              firstDayOfWeek="sunday"
+              label="第二希望"
+              defaultValue={new Date()}
+              {...form.getInputProps('secondDate')}
+            />
+            <DatePicker
+              locale="ja"
+              placeholder=""
+              inputFormat="YYYY/MM/DD"
+              firstDayOfWeek="sunday"
+              label="第三希望"
+              defaultValue={new Date()}
+              {...form.getInputProps('thirdDate')}
+            />
+          </div>
+          <Textarea
+            className="mb-4"
+            placeholder="お問い合わせの内容を入力してください。"
+            label="お問合せ内容"
+            withAsterisk
+            {...form.getInputProps('inquiry')}
           />
-          <DatePicker
-            locale="ja"
-            placeholder=""
-            inputFormat="YYYY/MM/DD"
-            label="第三希望"
-            defaultValue={new Date()}
-            {...form.getInputProps('thirdDate')}
-          />
+          <div className="flex justify-center">
+            <Button className="rounded-3xl" color="dark" type="submit">
+              お問い合わせを送信する
+            </Button>
+          </div>
+        </form>
+      )}
+      {formType == 1 && (
+        <div className="flex justify-center">
+          <Loader color="dark" />
         </div>
-        <Textarea
-          placeholder="お問い合わせの内容を入力してください。"
-          label="お問合せ内容"
-          withAsterisk
-          {...form.getInputProps('inquiry')}
-        />
-        <Button type="submit">Submit</Button>
-      </form>
+      )}
+      {formType == 2 && (
+        <div className="flex justify-center">
+          <p>お問合わせありがとうございます。</p>
+        </div>
+      )}
     </div>
   )
 }

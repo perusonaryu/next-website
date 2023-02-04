@@ -17,7 +17,7 @@ export default async function handler(
 
   form.parse(req, async function (err, fields: any, files: any) {
     if (err) {
-      res.status(500).json(err)
+      return res.status(500).json(err)
     }
     try {
       const transporter = createTransport({
@@ -37,11 +37,13 @@ export default async function handler(
         0,
       )
       const sendMailToUser = sendMaiToSetting(fields, files, fields.email, 1)
+      console.log('sendAdmin')
       //管理者にメール送信
       await transporter.sendMail(sendMailToAdmin)
+      console.log('sendUser')
       //ユーザーにメール送信
       await transporter.sendMail(sendMailToUser)
-      res.status(200)
+      res.status(200).json({ message: 'success!!' })
     } catch (err) {
       console.error(err)
       res.status(500).json(err)

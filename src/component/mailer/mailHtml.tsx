@@ -9,11 +9,11 @@ type Props = {
 export const MailToAdminHtml: FC<Props> = ({ fields }) => {
   return (
     <>
-      <p>お名前：{fields.firstName + ' ' + fields.lastName}</p>
+      <p>お名前：{fields.fullname ? fields.fullname : null}</p>
       <p>連絡先：{fields.email}</p>
       <p>携帯番号：{fields.phoneNumber}</p>
       <p>郵便番号：{fields.postalCode}</p>
-      <p>住所${fields.address}</p>
+      <p>住所：{fields.address}</p>
       <div>
         <h3>見積もり現場確認希望日</h3>
         <p>第一希望日：{dayjs(fields.firstDate).format('YYYY/MM/DD')}</p>
@@ -36,7 +36,7 @@ export const MailToUserHtml: FC<Props> = ({ fields }) => {
       </p>
       <div>
         <p>——————————————————————————————————</p>
-        <p>お名前：{fields.firstName + ' ' + fields.lastName}</p>
+        <p>お名前：{fields.fullname}</p>
         <p>連絡先：{fields.email}</p>
         <p>携帯番号：{fields.phoneNumber}</p>
         <p>郵便番号：{fields.postalCode}</p>
